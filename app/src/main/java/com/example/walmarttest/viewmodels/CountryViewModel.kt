@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.walmarttest.data.model.Country
 import com.example.walmarttest.data.network.Result
 import com.example.walmarttest.data.network.RetrofitInstance
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,7 +41,7 @@ class CountryViewModel : ViewModel() {
                     } catch (e: HttpException) {
                         retryCount++
                         if (retryCount == maxRetries) {
-                            val message = "Server error. Please try again later."
+                            // Message will be handled in the UI
                             _countries.postValue(Result.Error(e))
                         }
                     } catch (e: Exception) {

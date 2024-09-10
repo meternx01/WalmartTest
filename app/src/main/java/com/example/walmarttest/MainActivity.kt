@@ -44,9 +44,11 @@ class MainActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.GONE
                     showError(result.exception.message ?: "An unexpected error occurred.")
                 }
+
                 Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
+
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     countryAdapter = CountryAdapter(result.data)
@@ -72,6 +74,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(message: String) {
-        Toast.makeText(this, "A server error occurred.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
